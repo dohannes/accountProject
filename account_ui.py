@@ -20,8 +20,7 @@ db = mysql.connector.connect(
 
 myCursor = db.cursor()
 # myCursor.execute("CREATE DATABASE Userdata") #create the database to be used within the SQL workbench
-# myCursor.execute("CREATE TABLE users(username VARCHAR(20), password VARCHAR(16), userID int PRIMARY KEY AUTO_INCREMENT)") #create table to hold certain values
-
+#myCursor.execute("CREATE TABLE users(username VARCHAR(20), password VARCHAR(16), userID int PRIMARY KEY AUTO_INCREMENT)") #create table to hold certain values
 
 """
 CREATION OF THE GUI FOR THE PROJECT
@@ -47,6 +46,10 @@ class app(Frame):
 
         #insert them into db with appropriate userID's
         myCursor.execute("INSERT INTO users(username, password) VALUES (%s, %s)", (f"{username}", f"{password}"))
+        db.commit()
+        myCursor.execute("SELECT * FROM users")
+        for i in myCursor:
+            print(f"//\n{i}")
 
         #delete strings within entry fields
         self.usernameEntry.delete(0, END)
