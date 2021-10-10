@@ -47,9 +47,10 @@ class app(Frame):
         #insert them into db with appropriate userID's
         myCursor.execute("INSERT INTO users(username, password) VALUES (%s, %s)", (f"{username}", f"{password}"))
         db.commit()
-        myCursor.execute("SELECT * FROM users")
-        for i in myCursor:
-            print(f"//\n{i}")
+        # below allows myself to see the entries on the table, for my own use to see if the db is working
+        # myCursor.execute("SELECT * FROM users")
+        # for i in myCursor:
+        #     print(f"//\n{i}")
 
         #delete strings within entry fields
         self.usernameEntry.delete(0, END)
